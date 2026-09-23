@@ -1,0 +1,327 @@
+PressboardKit Licence Agreement
+===============================
+
+DRAFT — NOT YET REVIEWED BY A LAWYER. The commercial terms below are
+decided; the drafting of them is not. Nothing here has been read by
+counsel, and two passages in square brackets flag the questions a lawyer
+should answer first. Until that review happens, treat this as a statement
+of intent rather than as a document to rely on.
+
+Version 0.2 (draft), 22 September 2026.
+Plain-language companion, kept in step with this file:
+https://pressboardkit.com/legal/licence/
+
+
+0. Licensor
+-----------
+
+    AFTG s.r.o.
+    Komenského 1081/91, Bolevec, 323 00 Plzeň, Czech Republic
+    IČO (company number): 03267725
+    Registered in the Commercial Register kept by the Regional Court in
+    Plzeň, file C 29968.
+
+referred to below as "we" or "us". "PressboardKit" and the PressboardKit
+mark are ours.
+
+
+1. What this covers
+-------------------
+
+"the Software" means the PressboardKit engine — every module of the Swift
+package, any binary framework we distribute in its place, the bundled
+data described in section 7, and the documentation shipped with them.
+
+"you" means the person or organisation to whom we issued a licence.
+
+"your Application" means an iOS application, and its keyboard extension,
+that you develop and publish under your own name.
+
+This licence covers the Software. Use of our website is covered by the
+site terms, not by this file.
+
+
+2. Free, and licensed rather than open
+--------------------------------------
+
+The Software is free to use. There is no charge for a licence.
+
+It is licensed to you, not sold, and it is not open source. You register
+your Application, we issue a licence against it, and the Software
+validates that licence — which is why registration exists and why section
+8 matters: a licence is a relationship with terms, and this file is them.
+
+3. What you may do
+------------------
+
+Subject to section 4, you may:
+
+  (a) embed the Software — compiled into your Application's binary and
+      its keyboard extension — in Applications you develop and publish
+      under your own name;
+
+  (b) distribute those Applications to end users through the App Store or
+      any other channel Apple permits, with no per-install fee and no
+      limit on the number of end users;
+
+  (c) configure and extend the Software through its public API: styling,
+      layouts, suggestion providers, feedback, and every switch on
+      KeyboardBehavior;
+
+  (d) use the Software in internal builds, test harnesses and demo builds
+      of those same Applications.
+
+Source access is not included. The licence covers the Software in the
+form we distribute it; it does not give you a copy of the source, and
+there is therefore nothing to modify and ship.
+
+
+4. What you may not do
+----------------------
+
+You may not:
+
+  (a) redistribute the Software itself — as source, as a package, as a
+      binary framework, or as part of a template, starter kit or code
+      generator — to anyone other than your own developers;
+
+  (b) resell the Software, or offer it in whole or in substantial part as
+      a keyboard SDK, library or service that competes with
+      PressboardKit;
+
+  (c) sublicense, assign or transfer this licence, except as set out in
+      section 9;
+
+  (d) remove, disable or circumvent any licence check, including the
+      LicenseGate seam, or remove or obscure any notice identifying the
+      Software's authorship;
+
+  (e) decompile, disassemble or otherwise reverse engineer any binary
+      form of the Software, except to the extent that this restriction is
+      unenforceable under applicable law.
+
+Building an Application that happens to be a keyboard is expressly fine.
+Building a product whose value is that it gives other developers this
+engine is not. The Software being free changes neither half of that.
+
+
+5. Registration, licence keys and validation
+--------------------------------------------
+
+A licence is issued against an Application. You register with an email
+address we can serve notice to, you name the Application — its product
+name and its bundle identifier — and we issue a licence and a key. There
+is no charge and no approval step.
+
+The Software validates that licence. Concretely:
+
+  (a) Your containing application exchanges the licence key for a signed
+      **licence lease** naming the product name and bundle identifier the
+      licence was issued against, and stores it where the keyboard
+      extension can read it.
+
+  (b) The keyboard extension verifies that signature **offline**, against
+      a key compiled into the Software. **The keyboard extension does not
+      open a network connection.** It has no code that could.
+
+  (c) What leaves the containing application is the licence key and the
+      bundle identifier. No text you or your users type, no keystrokes,
+      no device identifier and no identifier of an individual
+      installation are sent to us, at any point, by any part of the
+      Software.
+
+  (d) Validation fails **open**. No lease, an unreadable one, a signature
+      that does not verify, a bundle identifier that does not match, a
+      clock that has moved, or a service of ours that is down — every one
+      of them leaves the free tier running. A keyboard somebody is typing
+      on does not stop because of anything in this section.
+
+Every deadline the Software enforces arrives inside the lease rather than
+compiled into it, so that a mistake of ours can be corrected without you
+shipping a build.
+
+Attempting to defeat this mechanism is a breach of section 4(d).
+
+
+6. Ownership
+------------
+
+We own the Software and every intellectual property right in it. This
+licence grants you the rights set out in section 3 and nothing else; no
+right is granted by implication. You own your Application, including any
+code you write against the Software's public API.
+
+
+7. Bundled data and third-party components
+------------------------------------------
+
+The Software declares no third-party runtime dependencies and links only
+Apple's own frameworks.
+
+It does ship word-frequency lists used by the autocomplete module. All
+39 derive from Hermit Dave's "FrequencyWords" (2018 edition), built from
+the OpenSubtitles corpus. **Those lists are licensed to you under
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA
+4.0), not under this agreement.** Per-language provenance, the statement
+of what we changed, and the licence terms are in
+
+    Sources/PressboardKitAutocomplete/Resources/CREDITS.txt
+
+Redistributing them inside your Application is permitted by that licence,
+and so is taking them out of it and using them elsewhere on CC BY-SA
+terms.
+
+To be unambiguous, because CC BY-SA 4.0 section 2(a)(5)(B) forbids us
+from imposing terms that would stop you exercising those rights:
+**section 4 does not apply to these word lists.** Nothing in 4(a) or 4(e)
+restricts your right to extract, copy, adapt or redistribute them under
+CC BY-SA 4.0. Section 4 restricts the engine; the data travels under its
+own licence and always did.
+
+    [PLACEHOLDER FOR THE LAWYER: this carve-out is the standard way to
+    ship CC BY-SA data inside closed software, but it has not been
+    reviewed. Confirm it is sufficient, and that shipping ShareAlike data
+    inside a binary framework does not reach the framework itself. If it
+    is not sufficient, the alternative is replacing the lists with
+    permissively licensed ones.]
+
+
+8. Changes to these terms
+-------------------------
+
+We may change these terms, **including what a licence costs**. Where a
+change affects a registered licensee we will say so at the registration
+email address we hold, which is part of why registration exists.
+
+Where a change would require you to start paying for something that was
+free, we will write **at least three months** before it takes effect. You
+are not obliged to accept it; section 8a says what happens if you do not.
+
+
+8a. What a change would mean for an Application you have already published
+--------------------------------------------------------------------------
+
+This is the part that reaches past you, so it is stated plainly rather
+than buried: **an Application you have already published goes on
+working.** It keeps typing, it keeps installing, and we will not ask you
+to withdraw it.
+
+If a change introduces a charge and you do not take a paid licence, what
+continues to work is the free tier — in new builds and in published
+Applications alike — and any feature outside it stops. Nothing stops
+mid-sentence on someone's phone: the licence lease the Software checks is
+granted for a period rather than per launch, it fails open when it cannot
+be reached, and it closes only on an expiry it has actually seen.
+
+    [PLACEHOLDER FOR THE LAWYER: this section is the one most likely to
+    need reworking. It reaches into software already on end users'
+    devices, and those end users are not parties to this agreement.
+    Confirm it is enforceable against a Czech or EU licensee, and whether
+    the three months should be longer.]
+
+
+8b. If a licence ever carries a charge
+--------------------------------------
+
+Nothing in this section applies today. It is here so that the terms of a
+paid licence are settled in advance rather than written at the moment we
+would benefit from writing them.
+
+A paid licence would be a **subscription**, billed monthly or annually as
+you choose, unlocking every feature for every version released while it
+is current.
+
+If it lapsed, section 8a describes what you are left with. That would
+apply **30 days after a payment is missed**, not immediately — a failed
+card should not take features out of an app that people are using — and
+not before we have actually reached you at the registration address.
+
+If **we** discontinue PressboardKit, the last version licensed to you
+becomes yours perpetually, on the terms in force when we discontinue it.
+You should not lose what you have paid for because we stopped.
+
+Support is best effort. There is no service level, no guaranteed response
+time, and we would rather say so than publish a number we cannot hold to.
+Email and the public issue tracker are the channels.
+
+
+9. Transfer
+-----------
+
+This licence transfers with a sale. If you sell the Application it covers
+— or your business — the licence goes with it, and the buyer takes it on
+these terms. Tell us in writing within 30 days; our agreement is not
+required.
+
+What does not change is the scope. The licence covers the Application it
+covered before the sale, not the buyer's other products. A buyer who
+wants it to reach further takes out a licence of their own, at the terms
+then current.
+
+
+10. No warranty
+---------------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+We do not warrant that the Software is free of defects, that it will meet
+your requirements, or that its behaviour will match any particular
+version of iOS. The Software reproduces the behaviour of Apple's keyboard
+as measured against specific iOS releases; Apple may change that
+behaviour at any time.
+
+
+11. Limitation of liability
+---------------------------
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WE
+BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR
+PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA OR GOODWILL,
+ARISING OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THIS LICENCE.
+
+To the same extent, we exclude liability altogether rather than cap it.
+There is no figure here because there is no sum we accept: you take the
+Software as it is and carry the risk of using it.
+
+That exclusion is not unlimited, and cannot be. Czech law (§ 2898 of the
+Civil Code) disregards any agreement made in advance that excludes or
+limits the duty to compensate harm caused **intentionally or by gross
+negligence**, or harm to a person's **natural rights**. Those remain,
+whatever this section says, and no drafting removes them.
+
+
+12. Termination
+---------------
+
+This section is about breach. A change to these terms is a different
+event and is dealt with in sections 8 and 8a.
+
+This licence ends if you breach it and do not remedy the breach within
+30 days of us telling you about it. On termination you must stop
+embedding the Software in new builds. Applications already published
+under it are not affected — we will not ask you to withdraw a shipped
+app.
+
+
+13. Governing law and jurisdiction
+----------------------------------
+
+This licence is governed by the law of the Czech Republic, excluding its
+conflict-of-law rules and excluding the United Nations Convention on
+Contracts for the International Sale of Goods.
+
+The courts of the Czech Republic have exclusive jurisdiction over any
+dispute arising out of it, the locally competent court being the one for
+our registered seat.
+
+    [NOTE FOR THE LAWYER: a consumer or a business in another EU member
+    state may be entitled to its own forum regardless of this clause.
+    Confirm how far exclusive jurisdiction actually holds.]
+
+
+14. Questions
+-------------
+
+hello@pressboardkit.com
