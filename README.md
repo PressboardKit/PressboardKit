@@ -1,4 +1,17 @@
-# PressboardKit
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/banner-dark.svg">
+    <img alt="PressboardKit — the iOS keyboard engine that is indistinguishable from the native one" src=".github/banner-light.svg" width="880">
+  </picture>
+</p>
+
+<p align="center">
+  <img alt="Swift 6" src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white">
+  <img alt="iOS 26+" src="https://img.shields.io/badge/iOS-26%2B-0071e3?logo=apple&logoColor=white">
+  <img alt="Swift Package Manager" src="https://img.shields.io/badge/SPM-compatible-0071e3">
+  <img alt="Licence: free, registered" src="https://img.shields.io/badge/licence-free%2C%20registered-1d1d1f">
+  <a href="https://pressboardkit.com"><img alt="pressboardkit.com" src="https://img.shields.io/badge/web-pressboardkit.com-0071e3"></a>
+</p>
 
 A self-contained **iOS keyboard engine** in Swift — layout rendering, callouts, shift/caps,
 spacebar-drag cursor, autocorrect, next-word prediction, slide-to-type, emoji and feedback — with
