@@ -5,6 +5,13 @@ Nahoře drž rozpracovanou verzi; při vydání doplň datum a bumpni.
 
 ## [Unreleased]
 
+### Added
+- **`PressboardKitLicensing`: licensing is part of the SDK** (ENG-197) — `PressboardLicence.activate(key:appGroup:)`
+  in your app and `.withLicence(appGroup:application:)` on the configuration in your extension.
+  Fetching, storage and the daily cadence are the SDK's, not an integrator's to reimplement. The
+  module is linked by the **app** and never by the keyboard, so the extension still contains no
+  code that can open a connection (LICENSE §5).
+
 ### Changed
 - **A lease that has run out is now refused** (ENG-194) — `exp` was decoded and then ignored, so
   a lease verified on its `soft`/`hard` dates alone. Those sit years out for a healthy licence,

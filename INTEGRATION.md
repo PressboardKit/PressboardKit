@@ -654,48 +654,57 @@ enum BehaviorStore {
 
 ## 15b. Licensing: registering your application
 
-**Without a licence the keyboard types, and does nothing else.** English only, no autocorrect,
-no predictions, no bundled dictionaries, no slide-to-type, no emoji panel, no themes. Nothing
-crashes and nothing nags — it degrades, because a keyboard that stops working is a keyboard
-somebody cannot use to ask for help.
+**Without a licence the keyboard types, and does nothing else.** English only, no autocorrect, no
+predictions, no bundled dictionaries, no slide-to-type, no emoji panel, no themes. Nothing crashes
+and nothing nags — it degrades, because a keyboard that stops working is a keyboard somebody
+cannot use to ask for help.
 
-What unlocks it is a **lease**: a short-lived, signed statement naming your application. You
-register the application once, your containing app exchanges its licence key for a lease, and the
-keyboard extension verifies that lease **offline**.
+Register your application once, and it is two lines of code.
+
+**In your app**, at launch (and from a background refresh task — see below):
 
 ```swift
-let config = PressboardConfiguration(
-    // The extension never fetches anything — it has no network until the user grants Full
-    // Access. Your app fetches and stores; this only reads, on every appearance, so a renewed
-    // lease is picked up without the extension being rebuilt.
-    loadLicence: { LicenceStore.lease },          // Data? from your App Group
-    loadTrustBundle: { LicenceStore.trustBundle }, // Data? from your App Group
-    // Your *containing app's* bundle id, not the extension's. Inside the extension
-    // `Bundle.main` is `com.acme.app.keyboard`, which is not what the licence was issued for.
-    applicationBundleID: "com.acme.app",
-    onLicenceStatus: { status in LicenceStore.lastStatus = status })
+import PressboardKitLicensing
+
+await PressboardLicence.activate(
+    key: "pbk_live_…",                     // issued for your application
+    appGroup: "group.com.acme.app")        // the group your extension shares
 ```
 
-`onLicenceStatus` is how you find out where you stand — `.licensed(plan:softExpiry:)`,
-`.degrading(plan:hardExpiry:)` or `.free(reason:)` — so your settings screen can say "expires in
-five days" instead of leaving somebody to notice what stopped working.
+**In your keyboard extension**, when you build the configuration:
 
-**A lease is short-lived, and refreshing it is the host's job.** The service issues one good for
-about a week and asks to be called daily; the exact dates are in the lease rather than in this
-SDK, so they can be widened during an incident without you shipping anything. Six failed days —
-no network, an outage of ours — cost nothing. The seventh drops the application to the free tier.
+```swift
+PressboardConfiguration(behavior: …, locales: …)
+    .withLicence(appGroup: "group.com.acme.app", application: "com.acme.app")
+```
 
-That means a person who installs your keyboard and never opens your app again stops being
-licensed a week later. **Refresh in the background** (`BGAppRefreshTask`) rather than only on
-launch; a keyboard is used daily and its containing app is opened once.
+That is all of it. The SDK fetches, stores and verifies; you supply a key, a group and your app's
+bundle identifier.
+
+**`PressboardKitLicensing` is linked by your app and never by your extension.** A keyboard has no
+network until the user grants Full Access, so the extension cannot fetch anything — and this SDK
+is built so that it has no code that could. That is a promise in LICENSE §5, and keeping the one
+call that opens a connection in a module the keyboard does not link is what keeps it true.
+
+**The bundle identifier is your app's, not the extension's.** Inside a keyboard, `Bundle.main` is
+`com.acme.app.keyboard`; a lease issued for `com.acme.app` would be refused. It is the one fact
+the SDK cannot work out for itself.
+
+**A lease is short-lived, and refreshing it is your job.** The service issues one good for about
+a week and asks to be called daily; `activate` is cheap when nothing is due. Six failed days — no
+network, an outage of ours — cost nothing. The seventh drops the application to the free tier.
+
+That means somebody who installs your keyboard and never opens your app again stops being
+licensed a week later. **Refresh in the background** (`BGAppRefreshTask`), not only on launch: a
+keyboard is used daily and its containing app is opened once.
 
 **Every failure lands on the free tier, never on an error.** No lease, an unreadable one, a
 signature we do not trust, a lease issued to another application, an expired one, or a clock that
 has moved backwards: all of them type. The only thing that changes is what is unlocked.
 
-The bundle identifier is checked twice: the lease must name your app, and the process asking must
-belong to it (`com.acme.app.keyboard` against a lease for `com.acme.app`). A lease issued for
-somebody else's application is worth nothing in yours.
+`onLicenceStatus` tells you where you stand — `.licensed(plan:softExpiry:)`,
+`.degrading(plan:hardExpiry:)` or `.free(reason:)` — so your settings screen can say "expires in
+five days" instead of leaving somebody to notice what stopped working.
 
 ## 16. Sizing the keyboard
 
