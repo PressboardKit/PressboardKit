@@ -42,6 +42,8 @@ API**; the code in [`DemoApp/`](DemoApp) is the working reference for all of it.
 | `PressboardKitLayouts` | layouts | `StandardLayoutResolver` + the CZ/EN data tables and QWERTY/AZERTY/QWERTZ/Dvorak/Colemak arrangements |
 | `PressboardKitAutocomplete` | optional | `SuggestionProvider` protocol + a dictionary-backed provider |
 | `PressboardKitEmoji` | optional | Emoji panel, full-text emoji search, recents store |
+| `PressboardKitApp` | assembled | `PressboardInputViewController` + `PressboardConfiguration` — the whole keyboard, depending on the four above |
+| `PressboardKitLicensing` | **app only** | `PressboardLicence.activate` — the only module with code that can open a connection; never link it into the extension |
 
 The kit **has no dependency on any host app**. You inject your theme, your suggestion
 source, and your settings; the kit imports none of your code.
@@ -50,11 +52,21 @@ source, and your settings; the kit imports none of your code.
 
 - **iOS 26+, Swift 6, Swift Package Manager.**
 
-Add the package (Xcode → *File ▸ Add Package Dependencies…*, or `Package.swift`):
+The engine ships as **binary frameworks** — one XCFramework per product, pinned by the checksums
+in the manifest. Add the package (Xcode → *File ▸ Add Package Dependencies…*, or `Package.swift`):
 
 ```swift
-.package(url: "https://your.git/PressboardKit.git", from: "0.1.0")
+.package(url: "https://github.com/PressboardKit/PressboardKit.git", from: "1.0.0")
 ```
+
+Link the products to your **application** target as well as the extension: that is what makes
+Xcode process and embed the frameworks, and an extension-only dependency fails to link. Do not add
+an Embed Frameworks phase by hand — Xcode embeds package products itself, and a second copy breaks
+the build.
+
+Because the frameworks are built for library evolution, the engine's public enums are not frozen:
+a `switch` over one needs `@unknown default:`. That is the price of a build of yours from today
+still linking against a build of ours from tomorrow.
 
 Then link the products your **keyboard extension target** needs (at minimum
 `PressboardKit` + `PressboardKitLayouts`):
