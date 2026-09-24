@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 300" width="1280" height="300"
+     role="img" aria-label="PressboardKit — the iOS keyboard engine that is indistinguishable from the native one">
+  <!-- README banner, light. The dark twin is banner-dark.svg and the two are
+       swapped by <picture> in README.md, so GitHub picks the one that matches
+       the reader's theme instead of punching a black slab into a white page.
+
+       Deliberately a system font stack and no embedded webfont: that is what
+       the product's own site does, so a viewer whose machine substitutes the
+       face gets the same treatment the site would have given them. A banner
+       that needs a downloaded font to look intentional is a banner that looks
+       broken on the one render nobody checked. -->
+  <defs>
+    <linearGradient id="markBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E9BFF"/>
+      <stop offset="1" stop-color="#0062D6"/>
+    </linearGradient>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0071e3" stop-opacity=".10"/>
+      <stop offset=".55" stop-color="#0071e3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="300" fill="#ffffff"/>
+  <rect width="1280" height="300" fill="url(#wash)" transform="translate(1280 0) scale(-1 1)"/>
+
+  <!-- The mark: a row of keys with one popped, same as the favicon. -->
+  <g transform="translate(96 86) scale(1.28)">
+    <rect width="100" height="100" rx="22.5" fill="url(#markBg)"/>
+    <g fill="#fff" opacity=".55">
+      <rect x="16.5" y="58" width="19" height="20" rx="6"/>
+      <rect x="40.5" y="58" width="19" height="20" rx="6"/>
+      <rect x="64.5" y="58" width="19" height="20" rx="6"/>
+    </g>
+    <rect x="36" y="22" width="28" height="24" rx="8" fill="#fff"/>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="272" y="128" fill="#1d1d1f" font-size="54" font-weight="600" letter-spacing="-1.2">PressboardKit</text>
+    <text x="272" y="184" font-size="30" font-weight="400" letter-spacing="-.4">
+      <tspan fill="#515154">The iOS keyboard engine that is </tspan><tspan fill="#0071e3">indistinguishable</tspan>
+    </text>
+    <text x="272" y="222" font-size="30" font-weight="400" letter-spacing="-.4" fill="#515154">from the native one.</text>
+    <text x="272" y="266" font-size="19" fill="#86868b" letter-spacing=".2">Swift 6  ·  iOS 26  ·  Swift Package Manager  ·  no external dependencies</text>
+  </g>
+</svg>
