@@ -1,7 +1,7 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
-// PressboardKit 0.3.0 — an iOS keyboard engine that is indistinguishable from the native one.
+// PressboardKit 1.0.0 — an iOS keyboard engine that is indistinguishable from the native one.
 //
 // This repository is the manifest. The engine ships as binaries, verified by the checksums
 // below; the source lives in a private repository. Licence terms are in LICENSE — the engine is
@@ -24,27 +24,27 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "PressboardKit",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKit.xcframework.zip",
-            checksum: "c032cce69e44f60be7545648a70d7d302895848aa3d9abbe50ad043aca9275ff"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKit.xcframework.zip",
+            checksum: "a4d6e4eadcca79ac03ce88bc29577e880c267f7969c4e69a1eb1404dd5560194"),
         .binaryTarget(
             name: "PressboardKitLayouts",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKitLayouts.xcframework.zip",
-            checksum: "970edfa1f82f4e74332e68e2f03bef7db0a0160081e968231a39d4e2c857e857"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKitLayouts.xcframework.zip",
+            checksum: "0dd91bf3fc74294acb1de51d968a2e7b1a4a0d02c359da37c05ba3024b7dd51b"),
         .binaryTarget(
             name: "PressboardKitAutocomplete",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKitAutocomplete.xcframework.zip",
-            checksum: "405cd25ddd94cdb27c2eb6b32ca8c43ec01ed228801c748a06c1255fabc39964"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKitAutocomplete.xcframework.zip",
+            checksum: "3390cbfd1f20c3a2b4e4f7617925944d67ff6f469f4f7b387b5db5c2277229ec"),
         .binaryTarget(
             name: "PressboardKitEmoji",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKitEmoji.xcframework.zip",
-            checksum: "d394a1900a7a8903150311db918add4e669779b2eed06ca4376258c887f43483"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKitEmoji.xcframework.zip",
+            checksum: "416f402e03a592a4d724a7eafd94c072fd5437a25f5ae34ef82c75b3b3e09a30"),
         .binaryTarget(
             name: "PressboardKitApp",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKitApp.xcframework.zip",
-            checksum: "7c40c766377b4889a72d3ba4c73e409afeb9adbd0da85b156bb483adcc694580"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKitApp.xcframework.zip",
+            checksum: "a45362502ff3c3da2f07836f9930919c721c678378a05f7346750d1b6c9152e7"),
         .binaryTarget(
             name: "PressboardKitLicensing",
-            url: "https://github.com/PressboardKit/PressboardKit/releases/download/0.3.0/PressboardKitLicensing.xcframework.zip",
-            checksum: "116f12650a72584ea1c9b003aa1d30ed173f48c2ced5bbd285b301a1094e94d1"),
+            url: "https://github.com/PressboardKit/PressboardKit/releases/download/1.0.0/PressboardKitLicensing.xcframework.zip",
+            checksum: "1333953153c89f46b35d1078e7c2a1272b7eab08fe24f4474203c0fd02eb8b29"),
     ]
 )

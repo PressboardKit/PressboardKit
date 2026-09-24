@@ -5,6 +5,18 @@ Nahoře drž rozpracovanou verzi; při vydání doplň datum a bumpni.
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-09-24
+
+### Changed
+- **The production root key is compiled in.** The engine verifies leases issued by
+  `app.pressboardkit.com`; a lease from the staging deployment no longer verifies, which is the
+  whole point of the two keys differing. A build meant for testing against staging has to carry
+  staging's key instead.
+- **The `swiftboard`-era storage key was renamed and its data carried over** (ENG-200) —
+  `EmojiRecentsStore` now defaults to `pressboardRecentEmoji` and **moves** what sits under
+  `swiftboardRecentEmoji` the first time it is constructed. A rename without that is not a
+  rename, it is a silent reset of everyone's recents.
+
 ### Added
 - **`PressboardKitLicensing`: licensing is part of the SDK** (ENG-197) — `PressboardLicence.activate(key:appGroup:)`
   in your app and `.withLicence(appGroup:application:)` on the configuration in your extension.
