@@ -6,6 +6,11 @@
 </p>
 
 <p align="center">
+  <img alt="Typing on PressboardKit: key-pops, and a long press on e opening the accent callout"
+       src=".github/keyboard.gif" width="320">
+</p>
+
+<p align="center">
   <img alt="Swift 6" src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white">
   <img alt="iOS 26+" src="https://img.shields.io/badge/iOS-26%2B-0071e3?logo=apple&logoColor=white">
   <img alt="Swift Package Manager" src="https://img.shields.io/badge/SPM-compatible-0071e3">
